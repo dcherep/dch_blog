@@ -10,6 +10,8 @@
             <th>Возраст</th>
             <th>Баланс</th>
             <th>Роль</th>
+            <th></th>
+            <th></th>
         </tr>
         {% for user in users %}
             <tr>
@@ -20,6 +22,8 @@
                 <td>{{user.age}}</td>
                 <td>{{user.balance}}</td>
                 <td>{{user.role}}</td>
+                <td><a href="/edituser/{{user.id}}">Редактировать</a></td>
+                <td><a href="/deleteuser/{{user.id}}">Удалить</a></td>
             </tr>
         {% endfor %}
     </table>

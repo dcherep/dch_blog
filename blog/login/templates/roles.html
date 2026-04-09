@@ -5,11 +5,15 @@
         <tr>
             <th>ID</th>
             <th>Название ролей</th>
+            <th></th>
+            <th></th>
         </tr>
         {% for role in roles %}
             <tr>
                 <td>{{role.id}}</td>
                 <td>{{role.name}}</td>
+                <td><a href="/editrole/{{role.id}}">Редактировать</a></td>
+                <td><a href="/deleterole/{{role.id}}">Удалить</a></td>
             </tr>
         {% endfor %}
     </table>

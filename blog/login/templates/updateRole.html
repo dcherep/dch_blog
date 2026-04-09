@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Редактирование роля{% endblock title %}
+{% block content %}
+	<h1>Форма для изменения роля</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{form}}
+        </table>
+        <input type="submit" value="Сохранить">
+    </form>
+{% endblock content %}

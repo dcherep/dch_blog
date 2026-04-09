@@ -29,4 +29,37 @@ def add_role(request):
     else:
         form=RoleForm()
         return render(request, "add_role.html",{'form': form})
+    
+def edit_user(request,id_user):
+    user=User.objects.get(id=id_user)
+    if request.method=="POST":
+        user=UserForm(request.POST,instance=user)
+        if user.is_valid():
+            user.save()
+        return redirect('/users/')
+    else:
+        userform=UserForm(instance=user)
+    return render(request, 'updateUser.html', {'form': userform})
+
+def deleteUser(request, id_user):
+    users=User.objects.get(id=id_user)
+    users.delete()
+    return redirect('/users/')
+
+def edit_role(request,id_role):
+    role=Role.objects.get(id=id_role)
+    if request.method=="POST":
+        role=RoleForm(request.POST,instance=role)
+        if role.is_valid():
+            role.save()
+        return redirect('/roles/')
+    else:
+        roleform=RoleForm(instance=role)
+    return render(request, 'updateRole.html', {'form': roleform})
+
+def deleteRole(request, id_role):
+    roles=Role.objects.get(id=id_role)
+    roles.delete()
+    return redirect('/roles/')
+
 
