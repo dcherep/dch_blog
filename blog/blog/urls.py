@@ -5,6 +5,9 @@ from login import views
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
+    path('', views.index),
+    path('login/', views.login),
+    path('logout/', views.logout_view),
     path('add_user/', views.add_user),
     path('users/', views.users),
     path('add_role/', views.add_role),
