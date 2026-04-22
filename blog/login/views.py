@@ -1,6 +1,15 @@
 from django.shortcuts import render, redirect
 from .models import User,Role
 from .forms import UserForm,RoleForm
+from .decorators import login_required,is_director
+
+@login_required
+def for_authorized(request):
+    return render(request, 'page_for_authorized.html')
+
+@is_director
+def for_director(request):
+    return render(request, 'page_for_director.html')
 
 def logout_view(request):
     request.session.flush()
@@ -62,17 +71,16 @@ def add_role(request):
     if request.session.get('user_id'):
         if request.method=="POST":
             role=RoleForm(request.POST)
-        if role.is_valid():
-            role.save()
+            if role.is_valid():
+                role.save()
             return redirect('/roles/')
         else:
             form=RoleForm()
-        return render(request, "add_role.html",{'form': form})
+            return render(request, "add_role.html",{'form': form})
     else:
         return redirect('/login/')
     
-       
-    
+
 def edit_user(request,id_user):
     user=User.objects.get(id=id_user)
     if request.method=="POST":

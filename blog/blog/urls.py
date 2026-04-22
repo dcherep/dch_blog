@@ -16,4 +16,6 @@ urlpatterns = [
     path('deleteuser/<int:id_user>', views.deleteUser),
     path('editrole/<int:id_role>', views.edit_role),
     path('deleterole/<int:id_role>', views.deleteRole),
+    path('page1/', views.for_authorized),
+    path('page2/', views.for_director),
 ]
